@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+baseImage="${DOCKER_TAG%%-*}"
+releaseTag="${DOCKER_TAG#*-}"
+
+case "$baseImage" in
+  'alpine') baseBuilderImage="golang:$baseImage" ;;
+  'debian') baseBuilderImage="golang" ;;
+  *) exit -1;;
+esac
+
+echo "Building branch/tag '$releaseTag' from '$baseBuilderImage' to create image '$IMAGE_NAME' from '$baseImage'."
+
+docker build\
+ --build-arg RELEASE_VERSION="$baseBuilderImage"\
+ --build-arg BASE_IMAGE="$baseImage"\
+ --build-arg RELEASE_TAG="$releaseTag"\
+  -t "$IMAGE_NAME" .

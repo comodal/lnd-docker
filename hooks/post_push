@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+baseImage="${DOCKER_TAG%%-*}"
+
+latestTag="$DOCKER_REPO:$baseImage-latest"
+docker tag "$IMAGE_NAME" "$latestTag"
+docker push "$latestTag"
