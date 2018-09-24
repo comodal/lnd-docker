@@ -35,7 +35,7 @@ docker build\
   -t "$BUILDER_IMAGE_NAME"\
   -f "$dockerfile" .
 
-readonly lndVcsRef="$(docker run -it --rm --entrypoint=sh "$BUILDER_IMAGE_NAME"\
+readonly lndVcsRef="$(docker run --rm --entrypoint=sh "$BUILDER_IMAGE_NAME"\
   -c 'cd /go/src/github.com/lightningnetwork/lnd && git rev-parse --short HEAD' | tr -d '\n\r')"
 
 docker build\
@@ -48,4 +48,4 @@ docker build\
 
 readonly lndVcsRefTag="$DOCKER_REPO:$baseImage-$lndVcsRef"
 docker tag "$IMAGE_NAME" "$lndVcsRefTag"
-docker push "$lndVcsRefTag"
+# docker push "$lndVcsRefTag"
