@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dockerTag="${DOCKER_TAG%%'#'*}"
+dockerTag="${DOCKER_TAG%%_*}"
 
 baseImage="${dockerTag%%-*}"
 releaseTag="${dockerTag#*-}"
