@@ -17,9 +17,12 @@ FROM ${BASE_IMAGE}
 
 RUN groupadd -r lnd\
  && useradd --no-log-init -r -g lnd lnd\
- && mkdir -p /home/lnd/.lnd\
-    /home/lnd/.neutrino /home/lnd/.btcd /home/lnd/.bitcoin\
-    /home/lnd/.ltcd /home/lnd/.litecoin\
+ && mkdir -p /home/lnd/.lnd/data /home/lnd/.lnd/logs\
+    /home/lnd/.neutrino/data /home/lnd/.neutrino/logs\
+    /home/lnd/.btcd/data /home/lnd/.btcd/logs\
+    /home/lnd/.bitcoin/data /home/lnd/.bitcoin/logs\
+    /home/lnd/.ltcd/data /home/lnd/.ltcd/logs\
+    /home/lnd/.litecoin/data /home/lnd/.litecoin/logs\
  && chown -R lnd:lnd /home/lnd
 
 USER lnd
