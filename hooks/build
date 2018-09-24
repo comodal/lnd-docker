@@ -46,6 +46,14 @@ docker build\
   -t "$IMAGE_NAME"\
   -f "$dockerfile" .
 
+if [[ "$DOCKER_TAG" == *latest ]]; then
+  readonly latestTag="$DOCKER_REPO:$baseImage-latest"
+  docker tag "$IMAGE_NAME" "$latestTag"
+  docker push "$latestTag"
+fi
+
+docker push "$IMAGE_NAME"
+
 readonly lndVcsRefTag="$DOCKER_REPO:$baseImage-$lndVcsRef"
 docker tag "$IMAGE_NAME" "$lndVcsRefTag"
-# docker push "$lndVcsRefTag"
+docker push "$lndVcsRefTag"
