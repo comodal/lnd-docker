@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-set -x
+dockerTag="${DOCKER_TAG%%'#'*}"
 
-baseImage="${DOCKER_TAG%%-*}"
-releaseTag="${DOCKER_TAG#*-}"
+baseImage="${dockerTag%%-*}"
+releaseTag="${dockerTag#*-}"
 
 case "$baseImage" in
   'alpine')
@@ -17,10 +17,14 @@ case "$baseImage" in
     dockerfile="DebianDockerfile"
   ;;
   *)
-    echo "Invalid DOCKER_TAG '$DOCKER_TAG'.  Only alpine- and stretch- are supported."
-    exit -1
+    echo "Invalid variable DOCKER_TAG='$DOCKER_TAG'. Only 'alpine-.*' and 'stretch-.*' are supported." 1>&2
+    exit 1
   ;;
 esac
+
+IMAGE_NAME="$DOCKER_REPO:$dockerTag"
+
+set -x
 
 docker build\
  --build-arg RELEASE_VERSION="$baseBuilderImage"\

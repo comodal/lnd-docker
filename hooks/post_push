@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-set -x
-
-baseImage="${DOCKER_TAG%%-*}"
-
-latestTag="$DOCKER_REPO:$baseImage-latest"
-docker tag "$IMAGE_NAME" "$latestTag"
-docker push "$latestTag"
+if [[ "$DOCKER_TAG" == *latest ]]; then
+  baseImage="${DOCKER_TAG%%-*}"
+  latestTag="$DOCKER_REPO:$baseImage-latest"
+  docker tag "$IMAGE_NAME" "$latestTag"
+  docker push "$latestTag"
+fi
