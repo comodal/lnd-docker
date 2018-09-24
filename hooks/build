@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
 
-dockerTag="${DOCKER_TAG%%_*}"
+readonly dockerTag="${DOCKER_TAG%%_*}"
 
-baseImage="${dockerTag%%-*}"
-releaseTag="${dockerTag#*-}"
+readonly baseImage="${dockerTag%%-*}"
+readonly releaseTag="${dockerTag#*-}"
 
 case "$baseImage" in
   'alpine')
-    baseBuilderImage="golang:alpine"
-    baseImage="alpine"
-    dockerfile="AlpineDockerfile"
+    readonly baseBuilderImage="golang:alpine"
+    readonly fromImage="alpine"
+    readonly dockerfile="AlpineDockerfile"
   ;;
   'stretch')
-    baseBuilderImage="golang:stretch"
-    baseImage="debian:stretch-slim"
-    dockerfile="DebianDockerfile"
+    readonly baseBuilderImage="golang:stretch"
+    readonly fromImage="debian:stretch-slim"
+    readonly dockerfile="DebianDockerfile"
   ;;
   *)
     echo "Invalid variable DOCKER_TAG='$DOCKER_TAG'. Only 'alpine-.*' and 'stretch-.*' are supported." 1>&2
@@ -23,12 +23,29 @@ case "$baseImage" in
 esac
 
 IMAGE_NAME="$DOCKER_REPO:$dockerTag"
+readonly BUILDER_IMAGE_NAME="$DOCKER_REPO:builder"
 
 set -x
 
 docker build\
- --build-arg RELEASE_VERSION="$baseBuilderImage"\
- --build-arg BASE_IMAGE="$baseImage"\
- --build-arg RELEASE_TAG="$releaseTag"\
+ --build-arg BASE_BUILDER_IMAGE="$baseBuilderImage"\
+ --build-arg BASE_IMAGE="$fromImage"\
+ --build-arg LND_RELEASE_TAG="$releaseTag"\
+ --target builder\
+  -t "$BUILDER_IMAGE_NAME"\
+  -f "$dockerfile" .
+
+readonly lndVcsRef="$(docker run -it --rm --entrypoint=sh "$BUILDER_IMAGE_NAME"\
+  -c 'cd /go/src/github.com/lightningnetwork/lnd && git rev-parse --short HEAD' | tr -d '\n\r')"
+
+docker build\
+ --build-arg BASE_BUILDER_IMAGE="$baseBuilderImage"\
+ --build-arg BASE_IMAGE="$fromImage"\
+ --build-arg LND_RELEASE_TAG="$releaseTag"\
+ --build-arg LND_VCS_REF="$lndVcsRef"\
   -t "$IMAGE_NAME"\
   -f "$dockerfile" .
+
+readonly lndVcsRefTag="$DOCKER_REPO:$baseImage-$lndVcsRef"
+docker tag "$IMAGE_NAME" "$lndVcsRefTag"
+docker push "$lndVcsRefTag"

@@ -3,10 +3,10 @@ ARG BASE_IMAGE="debian:stretch-slim"
 
 FROM ${BASE_BUILDER_IMAGE} as builder
 
-ARG RELEASE_TAG="master"
+ARG LND_RELEASE_TAG="master"
 
 RUN set -x\
- && git clone -q --branch "$RELEASE_TAG" --single-branch --depth 1\
+ && git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
     https://github.com/lightningnetwork/lnd\
     /go/src/github.com/lightningnetwork/lnd\
  && cd /go/src/github.com/lightningnetwork/lnd\
@@ -24,6 +24,12 @@ USER lnd
 WORKDIR /home/lnd/
 
 VOLUME /home/lnd/.lnd
+
+ARG LND_RELEASE_TAG="master"
+ARG LND_VCS_REF
+
+ENV LND_RELEASE_TAG=${LND_RELEASE_TAG}\
+    LND_VCS_REF=${LND_VCS_REF}
 
 COPY --from=builder /go/bin/lncli /usr/local/bin
 COPY --from=builder /go/bin/lnd /usr/local/bin
