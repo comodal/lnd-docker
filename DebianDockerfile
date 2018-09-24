@@ -23,8 +23,6 @@ RUN groupadd -r lnd\
 USER lnd
 WORKDIR /home/lnd/
 
-VOLUME /home/lnd/.lnd
-
 ARG LND_RELEASE_TAG="master"
 ARG LND_VCS_REF
 
