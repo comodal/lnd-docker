@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+dockerTag="${DOCKER_TAG%%_*}"
+IMAGE_NAME="$DOCKER_REPO:$dockerTag"
+
+docker push "$IMAGE_NAME"
+
 if [[ "$DOCKER_TAG" == *latest ]]; then
   baseImage="${DOCKER_TAG%%-*}"
   latestTag="$DOCKER_REPO:$baseImage-latest"
