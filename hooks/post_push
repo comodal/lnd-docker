@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 baseImage="${DOCKER_TAG%%-*}"
 
 latestTag="$DOCKER_REPO:$baseImage-latest"
