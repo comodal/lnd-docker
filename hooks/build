@@ -1,18 +1,30 @@
 #!/usr/bin/env bash
 
+set -x
+
 baseImage="${DOCKER_TAG%%-*}"
 releaseTag="${DOCKER_TAG#*-}"
 
 case "$baseImage" in
-  'alpine') baseBuilderImage="golang:$baseImage" ;;
-  'debian') baseBuilderImage="golang" ;;
-  *) exit -1;;
+  'alpine')
+    baseBuilderImage="golang:alpine"
+    baseImage="alpine"
+    dockerfile="AlpineDockerfile"
+  ;;
+  'stretch')
+    baseBuilderImage="golang:stretch"
+    baseImage="debian:stretch-slim"
+    dockerfile="DebianDockerfile"
+  ;;
+  *)
+    echo "Invalid DOCKER_TAG '$DOCKER_TAG'.  Only alpine- and stretch- are supported."
+    exit -1
+  ;;
 esac
-
-echo "Building branch/tag '$releaseTag' from '$baseBuilderImage' to create image '$IMAGE_NAME' from '$baseImage'."
 
 docker build\
  --build-arg RELEASE_VERSION="$baseBuilderImage"\
  --build-arg BASE_IMAGE="$baseImage"\
  --build-arg RELEASE_TAG="$releaseTag"\
-  -t "$IMAGE_NAME" .
+  -t "$IMAGE_NAME"\
+  -f "$dockerfile" .
