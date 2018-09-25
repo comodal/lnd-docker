@@ -1,6 +1,6 @@
-## LND Docker Images
+## [LND](https://github.com/LightningNetwork/lnd) Docker Images
 
-See [comodal/lnd-docker](https://hub.docker.com/r/comodal/lnd-docker/) on Docker Hub for images.
+See [comodal/lnd-docker](https://hub.docker.com/r/comodal/lnd-docker/tags/) on Docker Hub for available images.
 
 ### Example Bitcoin Testnet Neutrino LND
 
