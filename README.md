@@ -1,6 +1,6 @@
 ## [LND](https://github.com/LightningNetwork/lnd) Docker Images
 
-See [comodal/lnd-docker](https://hub.docker.com/r/comodal/lnd-docker/tags/) on Docker Hub for available images.
+See [dmp1ce/lnd-docker](https://hub.docker.com/r/dmp1ce/lnd-docker/tags/) on Docker Hub for available images.
 
 ### Example Bitcoin Testnet Neutrino LND
 
@@ -9,7 +9,7 @@ See [comodal/lnd-docker](https://hub.docker.com/r/comodal/lnd-docker/tags/) on D
  --name lnd-bitcoin-testnet\
  -v lnd-bitcoin-testnet-data:/home/lnd/.lnd/data/\
  -v lnd-bitcoin-testnet-logs:/home/lnd/.lnd/logs/\
- comodal/lnd-docker:stretch-latest\
+ dmp1ce/lnd-docker:stretch-latest\
   --bitcoin.active\
   --bitcoin.testnet\
   --bitcoin.node=neutrino\
