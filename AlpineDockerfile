@@ -5,8 +5,7 @@ FROM ${BASE_BUILDER_IMAGE} as builder
 
 ARG LND_RELEASE_TAG="master"
 
-RUN set -x\
- && apk add --no-cache\
+RUN  apk add --no-cache\
     build-base\
     git\
  && git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
@@ -17,12 +16,12 @@ RUN set -x\
  && make install
 
 FROM ${BASE_IMAGE}
+MAINTAINER David Parrish <daveparrish@tutanota.com>
 
 RUN addgroup -S lnd\
  && adduser -S -G lnd lnd\
  && mkdir -p\
     /home/lnd/.lnd/data /home/lnd/.lnd/logs\
-    /home/lnd/.node/data /home/lnd/.node/logs\
  && chown -R lnd:lnd /home/lnd
 
 USER lnd
