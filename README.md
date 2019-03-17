@@ -2,6 +2,17 @@
 
 See [dmp1ce/lnd-docker](https://hub.docker.com/r/dmp1ce/lnd-docker/tags/) on Docker Hub for available images.
 
+## Tags
+
+- `0.5.2-beta`, `latest` ([v0.5.2-beta/DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.5.2-beta/DebianDockerfile))
+- `0.5.2-beta-alpine`, `alpine` ([v0.5.2-beta/AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.5.2-beta/AlpineDockerfile))
+
+**Picking the right tag**
+
+- `dmp1ce/lnd-docker:latest`: points to the latest stable release available of LND. Use this only if you know what you're doing as upgrading blindly is a risky procedure.
+- `dmp1ce/lnd-docker:<version>`: based on a slim Debian image, points to a specific version branch or release.
+- `dmp1ce/lnd-docker:<version>-alpine`: based on Alpine Linux, points to a specific version branch or release. Uses a simple, resource efficient Linux distribution with security in mind.
+
 ### Example Bitcoin Testnet Neutrino LND
 
 ```sh
