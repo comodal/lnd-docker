@@ -21,6 +21,7 @@ RUN addgroup -S lnd\
  && adduser -S -G lnd lnd\
  && mkdir -p\
     /home/lnd/.lnd/data /home/lnd/.lnd/logs\
+    /home/lnd/.node/data /home/lnd/.node/logs\
  && chown -R lnd:lnd /home/lnd
 
 USER lnd
