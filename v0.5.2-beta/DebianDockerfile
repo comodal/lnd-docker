@@ -3,7 +3,7 @@ ARG BASE_IMAGE="debian:stretch-slim"
 
 FROM ${BASE_BUILDER_IMAGE} as builder
 
-ARG LND_RELEASE_TAG="master"
+ARG LND_RELEASE_TAG="v0.5.2-beta"
 
 RUN git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
     https://github.com/lightningnetwork/lnd\
