@@ -2,7 +2,6 @@ ARG BASE_BUILDER_IMAGE="golang:1.11-alpine"
 ARG BASE_IMAGE="alpine"
 
 FROM ${BASE_BUILDER_IMAGE} as builder
-
 ARG LND_RELEASE_TAG="master"
 
 RUN  apk add --no-cache\
@@ -26,12 +25,6 @@ RUN addgroup -S lnd\
 
 USER lnd
 WORKDIR /home/lnd/
-
-ARG LND_RELEASE_TAG="master"
-ARG LND_VCS_REF
-
-ENV LND_RELEASE_TAG=${LND_RELEASE_TAG}\
-    LND_VCS_REF=${LND_VCS_REF}
 
 COPY --from=builder /go/bin/lncli /usr/local/bin
 COPY --from=builder /go/bin/lnd /usr/local/bin
