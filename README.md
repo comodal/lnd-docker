@@ -1,6 +1,6 @@
 ## [LND](https://github.com/LightningNetwork/lnd) Docker Images
 
-See [dmp1ce/lnd-docker](https://hub.docker.com/r/dmp1ce/lnd-docker/tags/) on Docker Hub for available images.
+See [dmp1ce/lnd](https://hub.docker.com/r/dmp1ce/lnd/tags/) on Docker Hub for available images.
 
 ## Tags
 
@@ -9,9 +9,9 @@ See [dmp1ce/lnd-docker](https://hub.docker.com/r/dmp1ce/lnd-docker/tags/) on Doc
 
 **Picking the right tag**
 
-- `dmp1ce/lnd-docker:latest`: points to the latest stable release available of LND. Use this only if you know what you're doing as upgrading blindly is a risky procedure.
-- `dmp1ce/lnd-docker:<version>`: based on a slim Debian image, points to a specific version branch or release.
-- `dmp1ce/lnd-docker:<version>-alpine`: based on Alpine Linux, points to a specific version branch or release. Uses a simple, resource efficient Linux distribution with security in mind.
+- `dmp1ce/lnd:latest`: points to the latest stable release available of LND. Use this only if you know what you're doing as upgrading blindly is a risky procedure.
+- `dmp1ce/lnd:<version>`: based on a slim Debian image, points to a specific version branch or release.
+- `dmp1ce/lnd:<version>-alpine`: based on Alpine Linux, points to a specific version branch or release. Uses a simple, resource efficient Linux distribution with security in mind.
 
 ### Example Bitcoin Testnet Neutrino LND
 
@@ -20,7 +20,7 @@ See [dmp1ce/lnd-docker](https://hub.docker.com/r/dmp1ce/lnd-docker/tags/) on Doc
  --name lnd-bitcoin-testnet\
  -v lnd-bitcoin-testnet-data:/home/lnd/.lnd/data/\
  -v lnd-bitcoin-testnet-logs:/home/lnd/.lnd/logs/\
- dmp1ce/lnd-docker:stretch-latest\
+ dmp1ce/lnd:latest\
   --bitcoin.active\
   --bitcoin.testnet\
   --bitcoin.node=neutrino\
