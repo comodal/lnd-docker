@@ -2,7 +2,7 @@ ARG BASE_BUILDER_IMAGE="golang:stretch"
 ARG BASE_IMAGE="debian:stretch-slim"
 
 FROM ${BASE_BUILDER_IMAGE} as builder
-ARG LND_RELEASE_TAG="v0.7.0-beta"
+ARG LND_RELEASE_TAG="v0.7.1-beta"
 
 RUN git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
     https://github.com/lightningnetwork/lnd\
