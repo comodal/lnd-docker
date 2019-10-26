@@ -4,6 +4,8 @@ See [dmp1ce/lnd](https://hub.docker.com/r/dmp1ce/lnd/tags/) on Docker Hub for av
 
 ## Tags
 
+- `0.8.0-beta`, `0.8-beta`, `latest` ([v0.8-beta/DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.8-beta/DebianDockerfile))
+- `0.8.0-beta-alpine`, `0.8-beta-alpine`, `alpine` ([v0.8-beta/AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.8-beta/AlpineDockerfile))
 - `0.7.1-beta`, `0.7-beta`, `latest` ([v0.7-beta/DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.7-beta/DebianDockerfile))
 - `0.7.1-beta-alpine`, `0.7-beta-alpine`, `alpine` ([v0.7-beta/AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.7-beta/AlpineDockerfile))
 
