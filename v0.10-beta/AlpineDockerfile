@@ -1,9 +1,11 @@
-ARG BASE_BUILDER_IMAGE="golang:1.12-alpine"
+ARG BASE_BUILDER_IMAGE="golang:1.13-alpine"
 ARG BASE_IMAGE="alpine"
 
+# hadolint ignore=DL3006
 FROM ${BASE_BUILDER_IMAGE} as builder
-ARG LND_RELEASE_TAG="v0.7.1-beta"
+ARG LND_RELEASE_TAG="v0.10.0-beta"
 
+# hadolint ignore=DL3018,DL3003
 RUN  apk add --no-cache\
     build-base\
     git\
@@ -14,8 +16,8 @@ RUN  apk add --no-cache\
  && make\
  && make install
 
+# hadolint ignore=DL3006
 FROM ${BASE_IMAGE}
-MAINTAINER David Parrish <daveparrish@tutanota.com>
 
 RUN addgroup -S lnd\
  && adduser -S -G lnd lnd\
