@@ -4,16 +4,21 @@ See [dmp1ce/lnd](https://hub.docker.com/r/dmp1ce/lnd/tags/) on Docker Hub for av
 
 ## Tags
 
-- `0.10.1-beta`, `0.10-beta`, `latest` ([v0.10-beta/DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.10-beta/DebianDockerfile))
-- `0.10.1-beta-alpine`, `0.10-beta-alpine`, `alpine` ([v0.10-beta/AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.10-beta/AlpineDockerfile))
-- `0.9.2-beta`, `0.9-beta` ([v0.9-beta/DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.9-beta/DebianDockerfile))
-- `0.9.2-beta-alpine`, `0.9-beta-alpine` ([v0.9-beta/AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/hub/v0.9-beta/AlpineDockerfile))
+- `0.10.1-beta`, `0.10-beta`, `latest` ([DebianDockerfile.release](https://github.com/dmp1ce/lnd-docker/blob/v0.10.1-beta/DebianDockerfile.release))
+- `0.10.1-beta-alpine`, `0.10-beta-alpine`, `alpine` ([AlpineDockerfile.release](https://github.com/dmp1ce/lnd-docker/blob/v0.10.1-beta/AlpineDockerfile.release))
+- `dev` ([DebianDockerfile](https://github.com/dmp1ce/lnd-docker/blob/master/DebianDockerfile))
+- `dev-alpine` ([AlpineDockerfile](https://github.com/dmp1ce/lnd-docker/blob/master/AlpineDockerfile))
 
 **Picking the right tag**
 
-- `dmp1ce/lnd:latest`: points to the latest stable release available of LND. Use this only if you know what you're doing as upgrading blindly is a risky procedure.
+- `dmp1ce/lnd:latest`: points to the latest stable release available of LND built with a Debian base.
+- `dmp1ce/lnd:alpine`: points to the latest stable release avilable of LND built with an Alpine base.
 - `dmp1ce/lnd:<version>`: based on a slim Debian image, points to a specific version branch or release.
 - `dmp1ce/lnd:<version>-alpine`: based on Alpine Linux, points to a specific version branch or release. Uses a simple, resource efficient Linux distribution with security in mind.
+
+Using `latest` or `alpine` will keep LND up to date but be careful of migrations causing an issue from version to version. Use specific versions to avoid unexpected updates.
+
+Build yourself if the latest code is needed. For example `docker build --file DebianDockerfile ./`. `dev` and `dev-alpine` development builds are available but not guaranteed to be the latest code.
 
 ### Example Bitcoin Testnet Neutrino LND
 
