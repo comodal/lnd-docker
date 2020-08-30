@@ -3,7 +3,7 @@ ARG BASE_IMAGE="debian:stretch-slim"
 
 # hadolint ignore=DL3006
 FROM ${BASE_BUILDER_IMAGE} as builder
-ARG LND_RELEASE_TAG="v0.10.3-beta"
+ARG LND_RELEASE_TAG="v0.11.0-beta"
 
 # hadolint ignore=DL3003
 RUN git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
