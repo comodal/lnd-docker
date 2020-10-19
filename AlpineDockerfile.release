@@ -1,9 +1,9 @@
-ARG BASE_BUILDER_IMAGE="golang:1.13-alpine"
+ARG BASE_BUILDER_IMAGE="golang:1.15-alpine"
 ARG BASE_IMAGE="alpine"
 
 # hadolint ignore=DL3006
 FROM ${BASE_BUILDER_IMAGE} as builder
-ARG LND_RELEASE_TAG="v0.11.0-beta"
+ARG LND_RELEASE_TAG="v0.11.1-beta"
 
 # hadolint ignore=DL3018,DL3003
 RUN  apk add --no-cache\
