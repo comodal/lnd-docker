@@ -1,4 +1,4 @@
-ARG BASE_BUILDER_IMAGE="golang:1.15-alpine"
+ARG BASE_BUILDER_IMAGE="golang:1.16-alpine"
 ARG BASE_IMAGE="alpine"
 
 # hadolint ignore=DL3006
