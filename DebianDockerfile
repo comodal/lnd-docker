@@ -11,8 +11,9 @@ RUN git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
     https://github.com/lightningnetwork/lnd\
     /go/src/github.com/lightningnetwork/lnd\
  && cd /go/src/github.com/lightningnetwork/lnd\
+ && echo "Make with 'signrpc walletrpc chainrpc and invoicerpc' tags which are required by LiT"\
  && make\
- && make install
+ && make install tags "signrpc,walletrpc,chainrpc,invoicesrpc"
 
 # hadolint ignore=DL3006
 FROM ${BASE_IMAGE}
