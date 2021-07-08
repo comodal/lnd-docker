@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-# Do nothing, push from build instead to re-use variables.
