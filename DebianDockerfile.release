@@ -3,7 +3,7 @@ ARG BASE_IMAGE="debian:bullseye-slim"
 
 # hadolint ignore=DL3006
 FROM ${BASE_BUILDER_IMAGE} as builder
-ARG LND_RELEASE_TAG="v0.15.2-beta"
+ARG LND_RELEASE_TAG="v0.15.4-beta"
 
 # hadolint ignore=DL3003
 RUN git clone -q --branch ${LND_RELEASE_TAG} --single-branch --depth 1\
